@@ -5,8 +5,51 @@
 
 import os
 from random import choice
+import pickle
 
 from data import *
+
+# Handle user score
+def get_scores():
+    """ get saved score from the file
+    return dict
+    """
+    if os.path.exists(scoreFile): # if file exists
+        fileS = open(scoreFile, "rb")
+        myDepickler = pickle.Unpickler(fileS)
+        scores = myDepickler.load()
+        fileS.close()
+
+    else: # file is empty
+        scores = {}
+    return scores
+
+def save_scores(scores):
+    """ save scores
+    """
+    fileS = open(scoreFile, "wb")
+    myPickler = pickle.Pickler(fileS)
+    myPickler.dump(scores)
+    fileS.close()
+
+
+
+# Get userName
+def get_userName():
+    """ Ask for the userName. Must be alphanum and len>4
+    """
+    userName = input("Tapez Votre nom d'utilisateur: ")
+
+    userName = userName.capitalize() # 1st letter in cap
+
+    if not userName.isalnum() or len(userName)<4:
+
+        print("Nom invalide")
+        return get_userName()
+
+    else:
+        return userName
+
 
 # Pick up a random name from the list
 def pick_name ():

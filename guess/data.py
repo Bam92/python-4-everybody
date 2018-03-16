@@ -15,11 +15,8 @@ listWord = [
     "programme",
     "radio",
     "telephone",
-    "cisco"
+    "cisco",
+    "paris"
     ]
 
-#userName = input("Votre nom ou pseudo: ")
-
-userScore = 0
-
-maxChoice = 8 # maximum chance to play
+userScore, maxChoice, scoreFile = 0, 8, "scores"
